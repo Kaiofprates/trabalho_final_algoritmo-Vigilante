@@ -31,9 +31,8 @@ def main(args):
 
 	minhaTela.pack( padx= "10", pady="10",expand=3, fill="both")
 
-	minhaTela.bind('<Button-1>',sms)
-	minhaTela.bind('<Button-2>',foto)
-	minhaTela.bind('<Button-3>',email)
+	minhaTela.bind('<Button-3>',sms)
+
 
 
 	tk.mainloop()
@@ -51,8 +50,7 @@ def sms(event):
 		body = text)
 	messagebox.showinfo("Mensagem enviada", msg)
 
-def foto(event):
-	msg= ("-----FOTO------");camera_port = 0
+	msgf= ("-----FOTO------");camera_port = 0
 	nFrames = 30
 	camera = cv2.VideoCapture(camera_port)
 	file = "imagen.png"
@@ -61,11 +59,9 @@ def foto(event):
 	cv2.imwrite(file,img)
 	cv2.destroyAllWindows()
 	camera.release()
-	messagebox.showinfo("Capturado", msg)
+	messagebox.showinfo("Capturado", msgf)
 
-
-def email(event):
-	msg= ("---------EMAIL---------");server = smtplib.SMTP('smtp.gmail.com:587')
+	msge= ("---------EMAIL---------");server = smtplib.SMTP('smtp.gmail.com:587')
 	server.starttls()
 	server.login("email","senha")
 
@@ -86,7 +82,7 @@ def email(event):
 	msg.attach(msgText)
 	server.sendmail("email", to_addr, msg.as_string())
 	server.quit()
-	messagebox.showinfo("Email enviado", msg)
+	messagebox.showinfo("Email enviado", msge)
 
 if __name__ == '__main__':
     import sys
